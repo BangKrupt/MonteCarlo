@@ -33,7 +33,8 @@ def generate_points(n):
         points_color.append(is_in(*add_new_point()))
 
 def draw_figure_2d(xs = points_x, ys = points_y, color = points_color):
-    pi = round(10, 4) # calculate the value of pi here
+    import math
+    pi = math.pi # calculate the value of pi here
 
     fig = plt.figure(figsize=(5, 5))
     plt.scatter(xs, ys,
@@ -61,8 +62,8 @@ def draw_figure_3d(xs = points_x, ys = points_y, zs = points_z, color = points_c
     plt.show()
 
 def extract_inner_points():
-    for x, y, c in zip(points_x, points_y, points_color):
-        if c == 'blue':
+    for x, y in zip(points_x, points_y):
+        if is_in(x, y) == 'blue':
             # the variables below should contain only the coordinates of inner points
             inner_points_x.append(x)
             inner_points_y.append(y)
