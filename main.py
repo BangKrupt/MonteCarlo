@@ -1,8 +1,8 @@
 import random
 import matplotlib.pyplot as plt
 
-num_points = 10000
-area_size = 5
+num_points = 50000
+area_size = 10
 num_inner_points = 0
 points_x = []
 points_y = []
@@ -17,13 +17,13 @@ def add_new_point():
     # Create 2D or 3D coordinates
     x = random.uniform(0, area_size)
     y = random.uniform(0, area_size)
-    z = 0 # revise this code if necessary
-    points_x.append(x), points_y.append(y), points_z # revise this code if necessary
-    return x, y # revise this code if necessary
+    z = random.uniform(0, area_size) # revise this code if necessary
+    points_x.append(x), points_y.append(y), points_z.append(z) # revise this code if necessary
+    return x, y, z # revise this code if necessary
 
-def is_in(x, y): # revise this code if necessary
+def is_in(x, y, z): # revise this code if necessary
     global num_inner_points
-    if x**2 + y **2 <= 25: # check a point is in a circle or sphere here
+    if (x-5)**2 + (y-5) **2 + (z-5)**2 <= 25: # check a point is in a circle or sphere here
         num_inner_points += 1 # count the number of points in a circle or sphere here
         return 'blue'
     else:
@@ -47,7 +47,7 @@ def draw_figure_2d(xs = points_x, ys = points_y, color = points_color):
     plt.show()
 
 def draw_figure_3d(xs = points_x, ys = points_y, zs = points_z, color = points_color):
-    pi = round(0, 4) # calculate the value of pi here
+    pi = round(6*num_inner_points/num_points, 4) # calculate the value of pi here
 
     fig = plt.figure(figsize=(5, 5))
     ax = fig.add_subplot(111, projection='3d')
@@ -73,5 +73,5 @@ def extract_inner_points():
 if __name__ == "__main__":
     generate_points(num_points)
     extract_inner_points()
-    draw_figure_2d() # or draw_figure_3d()
+    draw_figure_3d() # or draw_figure_3d()
     
