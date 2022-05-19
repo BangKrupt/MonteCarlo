@@ -1,6 +1,7 @@
 import random
 import matplotlib.pyplot as plt
 
+num_points = 10000
 area_size = 5
 num_inner_points = 0
 points_x = []
@@ -22,8 +23,8 @@ def add_new_point():
 
 def is_in(x, y): # revise this code if necessary
     global num_inner_points
-    if y < x: # check a point is in a circle or sphere here
-        num_inner_points # count the number of points in a circle or sphere here
+    if x**2 + y **2 <= 25: # check a point is in a circle or sphere here
+        num_inner_points += 1 # count the number of points in a circle or sphere here
         return 'blue'
     else:
         return 'red'
@@ -33,7 +34,7 @@ def generate_points(n):
         points_color.append(is_in(*add_new_point()))
 
 def draw_figure_2d(xs = points_x, ys = points_y, color = points_color):
-    pi = round(10, 4) # calculate the value of pi here
+    pi = round(4*num_inner_points/num_points, 4) # calculate the value of pi here
 
     fig = plt.figure(figsize=(5, 5))
     plt.scatter(xs, ys,
@@ -70,7 +71,7 @@ def extract_inner_points():
             inner_points_color = [] # revise this code if necessary
 
 if __name__ == "__main__":
-    generate_points(500)
+    generate_points(num_points)
     extract_inner_points()
     draw_figure_2d() # or draw_figure_3d()
     
